@@ -8,7 +8,7 @@ import sys
 from sqlalchemy import create_engine
 import pymysql
 import os
-import date
+import datetime
 try:
     cwd=str(os.path.abspath(os.getcwd()))
     upath=cwd+'\\chromedriver.exe'
@@ -38,7 +38,7 @@ try:
 except Exception as e:
     with open('./krx_index_scrap_error_log.txt','w') as log:
         log.write(e)
-        log.write(datetime())
+        log.write(datetime.time())
     print(e)
 finally:
     driver.close()
