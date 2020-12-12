@@ -9,7 +9,7 @@ url='https://www.naver.com/'
 driver=webdriver.Chrome('chromedriver')
 driver.get(url)
 got=driver.find_element_by_css_selector('#themecast [aria-selected="true"]')
-got=str(got)
+got=str(got.text)
 got=[got]
 data=pd.DataFrame(got)
 print(data)
