@@ -8,7 +8,7 @@ path=os.path.abspath(os.getcwd())
 path=path+'/chromedriver'
 url='https://www.naver.com/'
 print(path)
-driver=webdriver.Chrome(path+'/chromedriver')
+driver=webdriver.Chrome(path)
 driver.get(url)
 got=driver.find_element_by_css_selector('#themecast [aria-selected="true"]')
 got=str(got.text)
