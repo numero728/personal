@@ -6,7 +6,7 @@ import json
 import os
 path=os.path.abspath(os.getcwd())
 url='https://www.naver.com/'
-driver=webdriver.Chrome(path+'\scrap'+'\\'+'chromedriver')
+driver=webdriver.Chrome(path+'/chromedriver')
 driver.get(url)
 got=driver.find_element_by_css_selector('#themecast [aria-selected="true"]')
 got=str(got.text)
