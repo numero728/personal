@@ -29,3 +29,13 @@
 # 크롬 드라이버 설치
 1. wget -N https://chromedriver.storage.googleapis.com/87.0.4280.88/chromedriver_linux64.zip
 2. unzip으로 압축 해제
+
+
+파이썬 위치 /usr/bin/python3.6
+
+
+
+# 크론 자동화
+python 경로
+
+/home/ubuntu/personal/scrap/cron_test.py

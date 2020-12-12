@@ -1,0 +1,5 @@
+- 실제 프로젝트 폴더:
+username=ubuntu
+projectname=personal
+/home/username/projectname
+/
