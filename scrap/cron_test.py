@@ -5,6 +5,7 @@ import pymysql
 import json
 import os
 path=os.path.abspath(os.getcwd())
+path=path+'/chromedriver'
 url='https://www.naver.com/'
 print(path)
 driver=webdriver.Chrome(path+'/chromedriver')
