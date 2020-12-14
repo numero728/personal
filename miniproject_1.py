@@ -12,10 +12,14 @@ import platform
 import time
 import urllib
 
-
-driver = wd.Chrome('./chromedriver.exe')
+options=wd.ChromeOptions()
+options.add_argument('headless')
+options.add_argument("--no-sandbox")
+options.add_argument("--remote-debugging-port=9222")
+options.add_argument("disable-dev-shm-usage")
+driver = wd.Chrome(executable_path="/usr/bin/chromedriver",chrome_options=options)
 target_site = 'https://finance.naver.com/news/'
-driver.get(target_site)
+driver.get(target_site,)
 
 main_news = driver.find_elements_by_css_selector('div.main_news > ul > li')
 
