@@ -39,3 +39,12 @@
 python 경로
 
 /home/ubuntu/personal/scrap/cron_test.py
+
+
+# socketio 관련 레퍼런스
+https://yumere.tistory.com/53
+https://www.slideshare.net/LinggarPrimahastoko/webchat-using-flask-socket-io
+
+
+# 하이차트 관련 레퍼런스
+https://m.blog.naver.com/PostView.nhn?blogId=pjt3591oo&logNo=221200118011&proxyReferer=https:%2F%2Fwww.google.com%2F
