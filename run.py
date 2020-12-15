@@ -1,6 +1,5 @@
 from flask import Flask, render_template, session, make_response
 from flask_socketio import SocketIO, emit
-from flask_session import Session
 import re
 import time
 
