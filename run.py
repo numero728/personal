@@ -7,7 +7,6 @@ search_api='AIzaSyCcsjF9lEDadtt1C76PyvEnK2jfjLAjuxk'
 app=Flask(__name__)
 app.config['SECRET_KEY']='miniproject'
 app.config['SESSION_TYPE']='filesystem'
-Session(app)
 socketio=SocketIO(app,cors_allowed_origins='*', pingInterval=60000,pingTimeout=60000,async_mode='threading', manage_session=False)
 msg_pack=[]
 log_on=False
