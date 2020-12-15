@@ -3,11 +3,13 @@ from flask_socketio import SocketIO, emit
 from flask_session import Session
 import re
 import time
+app=Flask(__name__)
+
 @app.route('/')
 def test():
-  return test
+  return 'test'
 # search_api='AIzaSyCcsjF9lEDadtt1C76PyvEnK2jfjLAjuxk'
-# app=Flask(__name__)
+
 # app.config['SECRET_KEY']='miniproject'
 # app.config['SESSION_TYPE']='filesystem'
 # Session(app)
@@ -93,3 +95,6 @@ def test():
 
 # if __name__=='__main__':
 #   socketio.run(app, debug=True)
+
+if __name__ =='__main__':
+    app.run(debug=True)
