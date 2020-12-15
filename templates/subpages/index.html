@@ -1,78 +1,56 @@
 <div class="content-wrapper">
-  {# 모든 콘텐츠의 헤더 파트이고, 현재 페이지가 어디 에 위치해있는지 그 경로를
-  네비게이션하고 있다(모든 페이지는 필수로 유지) #}
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0">지표 게시판</h1>
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item">
-              <a href="{{ url_for('home') }}">Home</a>
-            </li>
-            <li class="breadcrumb-item active">지표 게시판</li>
-          </ol>
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-  </div>
-
-  <section class="content">
-    <div class="container-fluid">            
-        <div class="row">
-            <div class="col-lg-12 col-6">
-                <div>
-                    <fieldset>
-
-                        <!-- <script>
-                          $('[name=sector]').on('change',()=>{
-                            var sector=$('[name=sector]').val()
-                            console.log(sector);
-                            document.location.href=`/news?sector=${sector}`;
-                          })
-                        </script> -->
-                        <ul id='results'>
-                        </ul>
-                    </fieldset>
-
-                </div>
-                <table border='1'>
-                    <thead>
-                        <tr>
-                  {%for k in result[0].keys()%}
-                  <th>
-                    {{k}}
-                  </th>
-                  {%endfor%}
-                        </tr>
-                    </thead>    
-                    <tbody>
-                      {% for dic in result %}
+  {%include 'subpublic/index_header.html'%}
+  
+    <section class="content">
+      <div class="container-fluid">            
+          <div class="row">
+              <div class="col-lg-12 col-6">
+                  <div>
+                      <fieldset>
+  
+                          <!-- <script>
+                            $('[name=sector]').on('change',()=>{
+                              var sector=$('[name=sector]').val()
+                              console.log(sector);
+                              document.location.href=`/news?sector=${sector}`;
+                            })
+                          </script> -->
+                          <ul id='results'>
+                          </ul>
+                      </fieldset>
+  
+                  </div>
+                  <table border='1'>
+                      <thead>
                           <tr>
-                            {%for v in dic.values()%}
-                            <td>
-                              {{v}}
-                            </td>
-                            {%endfor%}
+                    {%for k in result[0].keys()%}
+                    <th>
+                      {{k}}
+                    </th>
+                    {%endfor%}
                           </tr>
-                        {% endfor %}                            
-                    </tbody>
-                </table>
-            </div>
-        
-        </div>
-        <div style='margin:auto;'class="card-footer clearfix">
-
-        </div>
-    </div>
-    <!-- /.container-fluid -->
-</section>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+                      </thead>    
+                      <tbody>
+                        {% for dic in result %}
+                            <tr>
+                              {%for v in dic.values()%}
+                              <td>
+                                {{v}}
+                              </td>
+                              {%endfor%}
+                            </tr>
+                          {% endfor %}                            
+                      </tbody>
+                  </table>
+              </div>
+          
+          </div>
+          <div style='margin:auto;'class="card-footer clearfix">
+  
+          </div>
+      </div>
+      <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

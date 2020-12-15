@@ -1,8 +1,8 @@
-from flask import Flask, render_template, session, make_response, url_for, redirect, request
+from flask import Flask, render_template, session, make_response, url_for, redirect, request, jsonify
 from flask_socketio import SocketIO, emit
 import re
 import time
-from db_query import *
+from DB.db_query import *
 
 app=Flask(__name__)
 
@@ -37,72 +37,71 @@ if True:
     # else:
     #   msg_pack.append({'user':client_name,'msg':msg})
 
-@app.route('/')
-def home():
-    return render_template('home.html', name='사용자명')
+if True:
+  @app.route('/')
+  def home():
+      return render_template('home.html', name='사용자명')
 
-@app.route('/news')
-def news():
-    # if request.args.get('sector')=='None' or request.args.get('sector') is False:
-    #   if request.args.get('pageNo'):
-    #     pageNo=request.args.get('pageNo')
-    #   else:
-    #     pageNo='1'
-    #   sector=request.args.get('sector')
-    #   data=sector_query(sector,pageNo)
-    #   print(data)
-    #   return render_template('news.html', pageNo=int(pageNo),result=data, sector=sector )
+  @app.route('/news')
+  def news():
+      # pageNo이 있는 경우;
+      # 주어진 pageNo으로 쿼리 수행한 다음
+      # 결과 반환
+      print(request.args.get('pageNo'))
+      if 'pageNo' in request.args:
+        pageNo=request.args.get('pageNo')
+        data=news_query(pageNo)
+        res={
+          'pageNo':pageNo,
+          'result':data
+          }
+        return jsonify(res)
+      else:
+        pageNo=1
+        data=news_query(pageNo)
+        return render_template('news.html', result=data, pageNo=pageNo)
 
-    # else:
-    if request.args.get('pageNo'):
-      pageNo=request.args.get('pageNo')
+  @app.route('/exchange')
+  def exchange():
+      data=exch_query()
+      return render_template('exchange.html', result=data)
+
+  @app.route('/index')
+  def index():
+      data=index_query()
+      return render_template('index.html', result=data)
+
+  @app.route('/youtube')
+  def youtube():
+      data=youtube_query()
+      return render_template('youtube.html', result=data)
+
+
+  @app.route('/chat')
+  def chat():
+    if 'username' in session:
+      print('''
+      
+      
+      
+      
+      
+      
+      
+      테스트
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      ''')
+      return render_template('chat.html', reconnect='True')
     else:
-      pageNo='1'
-    data=news_query(pageNo)
-    print(data)
-    return render_template('news.html', pageNo=int(pageNo),result=data)
-
-@app.route('/exchange')
-def exchange():
-    data=exch_query()
-    return render_template('exchange.html', result=data)
-
-@app.route('/index')
-def index():
-    data=index_query()
-    return render_template('index.html', result=data)
-
-@app.route('/youtube')
-def youtube():
-    data=youtube_query()
-    return render_template('youtube.html', result=data)
-
-
-@app.route('/chat')
-def chat():
-  if 'username' in session:
-    print('''
-    
-    
-    
-    
-    
-    
-    
-    테스트
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ''')
-    return render_template('chat.html', reconnect='True')
-  else:
-    return render_template('chat.html', reconnect='False')
+      return render_template('chat.html', reconnect='False')
 
 
 if __name__=='__main__':

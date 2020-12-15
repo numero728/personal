@@ -1,27 +1,5 @@
 <div class="content-wrapper">
-  {# 모든 콘텐츠의 헤더 파트이고, 현재 페이지가 어디 에 위치해있는지 그 경로를
-  네비게이션하고 있다(모든 페이지는 필수로 유지) #}
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0">실시간 뉴스</h1>
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item">
-              <a href="{{ url_for('home') }}">Home</a>
-            </li>
-            <li class="breadcrumb-item active">뉴스 v1</li>
-          </ol>
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-  </div>
+{%include 'subpublic/news_header.html'%}
 
   <section class="content">
     <div class="container-fluid">            
@@ -37,33 +15,23 @@
                               <option value="bond">채권</option>
                             </select>
                         </form>
-                        <!-- <script>
-                          $('[name=sector]').on('change',()=>{
-                            var sector=$('[name=sector]').val()
-                            console.log(sector);
-                            document.location.href=`/news?sector=${sector}`;
-                          })
-                        </script> -->
                         <ul id='results'>
                         </ul>
                     </fieldset>
 
                 </div>
-                <table border='1'>
+                <table style='border:0.5px solid,solid;width:100%;overflow-x:auto'>
                     <thead>
                         <tr>
-                            <th>순서</th>
-                            <th>뉴스 제목</th>
+                            <th style='width:5%;text-align: center;'>순서</th>
+                            <th style='width:50%;text-align: center;'>뉴스 제목</th>
                         </tr>
                     </thead>    
-                    <tbody>
+                    <tbody id='news_body'>
                         {% for news in result %}
                           <tr>
-                            <td>
+                            <td style='text-align: center;'>
                               {{(((pageNo-1)*10)+result.index(news))}}
-                              <script>
-                                console.log(`{{news['title']}}`)
-                              </script>
                             </td>
                             <td>
                               <a href="{{news['href']}}">
@@ -75,20 +43,33 @@
                     </tbody>
                 </table>
             </div>
-        
         </div>
+
+
+
+        
         <div style='margin:auto;'class="card-footer clearfix">
           <ul class="pagination pagination-sm m-0 float-center">
-            <li class="page-item"><a class="page-link" href="#">«</a></li>
+            <li class="page-item"><a class="page-link" href=''>«</a></li>
             {%for i in range(0,10) %}
-            <li class="page-item"><a class="page-link" href="/news?pageNo={{i+1}}">{{i+1}}</a></li>
+            <li class="page-item"><a id='page_btn'class="page-link"href=''>{{i+1}}</a></li>
             {%endfor%}
-            <li class="page-item"><a class="page-link" href="#">»</a></li>
+            <li class="page-item"><a class="page-link" href=''>»</a></li>
           </ul>
         </div>
+        <script>
+          $('#page_btn').on('click',()=>{
+            var pageNo=$(this).text
+            console.log('ddd')
+            $.ajax(
+              url:"{{url_for('news')}}",
+              data:{'pageNo':pageNo},
+              dataType:'json',
+              success: function(data){
+                console.log(data)
+                })
+              })
+        </script>
     </div>
-    <!-- /.container-fluid -->
 </section>
-<!-- /.content -->
 </div>
-<!-- /.content-wrapper -->

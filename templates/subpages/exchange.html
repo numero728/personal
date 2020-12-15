@@ -1,27 +1,5 @@
 <div class="content-wrapper">
-  {# 모든 콘텐츠의 헤더 파트이고, 현재 페이지가 어디 에 위치해있는지 그 경로를
-  네비게이션하고 있다(모든 페이지는 필수로 유지) #}
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0">환율 게시판</h1>
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item">
-              <a href="{{ url_for('home') }}">Home</a>
-            </li>
-            <li class="breadcrumb-item active">환율</li>
-          </ol>
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-  </div>
+{%include 'subpublic/exchange_header.html'%}
 
   <section class="content">
     <div class="container-fluid">            

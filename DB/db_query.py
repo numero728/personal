@@ -1,15 +1,6 @@
 import pymysql
-import requests
-from bs4 import BeautifulSoup as bs
-import html5lib
 
-# url='https://finance.naver.com/news/'
-# res=requests.get(url)
-# soup=bs(res.text,'html5lib')
-# main=soup.select('div.main_news > ul > li')
-# ls=main[
-# ls
-# len(ls)
+
 def news_query(pageNo):
     conn=0
     try:
@@ -24,7 +15,7 @@ def news_query(pageNo):
 
 
         with conn.cursor() as cursor:
-            sql=f"SELECT * FROM main_news LIMIT {str(int(pageNo)-1)},10;"
+            sql=f"SELECT * FROM main_news LIMIT {str(int(pageNo)-1)},20;"
             cursor.execute(sql)
             data=cursor.fetchall()
     except Exception as e:
@@ -60,7 +51,6 @@ def sector_query(sector,pageNo):
         return(data)
 
 
-
 def exch_query():
     conn=0
     try:
@@ -84,6 +74,7 @@ def exch_query():
         conn.close()
         return(data)
 
+
 def index_query():
     conn=0
     try:
@@ -106,8 +97,9 @@ def index_query():
     finally:
         conn.close()
         return(data)
-        
-def youtube():
+
+
+def youtube_query():
     conn=0
     try:
         conn=pymysql.connect(
@@ -130,6 +122,7 @@ def youtube():
         conn.close()
         return(data)
     
+
 if __name__ == '__main__':
     data_=exch_query()
     print(data_)
