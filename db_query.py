@@ -58,8 +58,80 @@ def sector_query(sector,pageNo):
     finally:
         conn.close()
         return(data)
+
+
+
+def exch_query():
+    conn=0
+    try:
+        conn=pymysql.connect(
+            host='personaldb.cepsu2i8bkn5.ap-northeast-2.rds.amazonaws.com',
+            user='admin',
+            password='pnudb960726!',
+            port=3306,
+            db='yaneodoo',
+            charset='utf8mb4',
+            cursorclass=pymysql.cursors.DictCursor)
+
+
+        with conn.cursor() as cursor:
+            sql=f"SELECT * FROM exchange_rate;"
+            cursor.execute(sql)
+            data=cursor.fetchall()
+    except Exception as e:
+        data=str(e)
+    finally:
+        conn.close()
+        return(data)
+
+def index_query():
+    conn=0
+    try:
+        conn=pymysql.connect(
+            host='personaldb.cepsu2i8bkn5.ap-northeast-2.rds.amazonaws.com',
+            user='admin',
+            password='pnudb960726!',
+            port=3306,
+            db='scrap_data',
+            charset='utf8mb4',
+            cursorclass=pymysql.cursors.DictCursor)
+
+
+        with conn.cursor() as cursor:
+            sql=f"SELECT * FROM market_index;"
+            cursor.execute(sql)
+            data=cursor.fetchall()
+    except Exception as e:
+        data=str(e)
+    finally:
+        conn.close()
+        return(data)
+        
+def youtube():
+    conn=0
+    try:
+        conn=pymysql.connect(
+            host='personaldb.cepsu2i8bkn5.ap-northeast-2.rds.amazonaws.com',
+            user='admin',
+            password='pnudb960726!',
+            port=3306,
+            db='scrap_data',
+            charset='utf8mb4',
+            cursorclass=pymysql.cursors.DictCursor)
+
+
+        with conn.cursor() as cursor:
+            sql=f"SELECT * FROM market_index;"
+            cursor.execute(sql)
+            data=cursor.fetchall()
+    except Exception as e:
+        data=str(e)
+    finally:
+        conn.close()
+        return(data)
+    
 if __name__ == '__main__':
-    data_=news_query(5)
+    data_=exch_query()
     print(data_)
-    data=sector_query('stock',5)
-    print(data)
+    
+

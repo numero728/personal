@@ -2,7 +2,7 @@ from flask import Flask, render_template, session, make_response, url_for, redir
 from flask_socketio import SocketIO, emit
 import re
 import time
-from db_query import news_query, sector_query
+from db_query import *
 
 app=Flask(__name__)
 
@@ -62,10 +62,20 @@ def news():
     print(data)
     return render_template('news.html', pageNo=int(pageNo),result=data)
 
+@app.route('/exchange')
+def exchange():
+    data=exch_query()
+    return render_template('exchange.html', result=data)
 
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    data=index_query()
+    return render_template('index.html', result=data)
+
+@app.route('/youtube')
+def youtube():
+    data=youtube_query()
+    return render_template('youtube.html', result=data)
 
 
 @app.route('/chat')
