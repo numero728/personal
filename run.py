@@ -2,11 +2,11 @@ from flask import Flask, render_template, session, make_response, url_for, redir
 from flask_socketio import SocketIO, emit
 import re
 import time
-from db_query import news_query
+from db_query import news_query, sector_query
 
 app=Flask(__name__)
 
-socketio=SocketIO(app,cors_allowed_origins='*', pingInterval=60000,pingTimeout=60000,async_mode='threading', manage_session=False)
+socketio=SocketIO(app,cors_allowed_origins='*', pingInterval=600000,pingTimeout=600000,async_mode='threading', manage_session=False)
 msg_pack=[]
 
 if True:
@@ -43,6 +43,17 @@ def home():
 
 @app.route('/news')
 def news():
+    # if request.args.get('sector')=='None' or request.args.get('sector') is False:
+    #   if request.args.get('pageNo'):
+    #     pageNo=request.args.get('pageNo')
+    #   else:
+    #     pageNo='1'
+    #   sector=request.args.get('sector')
+    #   data=sector_query(sector,pageNo)
+    #   print(data)
+    #   return render_template('news.html', pageNo=int(pageNo),result=data, sector=sector )
+
+    # else:
     if request.args.get('pageNo'):
       pageNo=request.args.get('pageNo')
     else:
