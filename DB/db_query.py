@@ -1,7 +1,7 @@
 import pymysql
 
 
-def news_query(pageNo):
+def news_query():
     conn=0
     try:
         conn=pymysql.connect(
@@ -15,7 +15,7 @@ def news_query(pageNo):
 
 
         with conn.cursor() as cursor:
-            sql=f"SELECT * FROM main_news LIMIT {str(int(pageNo)-1)},20;"
+            sql=f"SELECT * FROM main_news;"
             cursor.execute(sql)
             data=cursor.fetchall()
     except Exception as e:
@@ -124,7 +124,7 @@ def youtube_query():
     
 
 if __name__ == '__main__':
-    data_=exch_query()
-    print(data_)
-    
+    data=index_query()
+
+
 
